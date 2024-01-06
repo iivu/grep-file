@@ -11,7 +11,6 @@ public class FileSearch {
             throw new IllegalArgumentException("文件不存在");
         }
         try (FileReader fr = new FileReader(target); BufferedReader br = new BufferedReader(fr);) {
-            int result = -1;
             int lineIndex = 0;
             while (true) {
                 String line = br.readLine();
@@ -20,11 +19,10 @@ public class FileSearch {
                 }
                 lineIndex++;
                 if (line.contains(text)) {
-                    result = lineIndex;
-                    break;
+                    return lineIndex;
                 }
             }
-            return result;
+            return -1;
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
